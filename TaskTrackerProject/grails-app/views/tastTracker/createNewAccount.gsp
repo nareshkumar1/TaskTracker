@@ -34,12 +34,12 @@ var isEmail = function(email){
 
 </head>
 <body>
-  <div class="orgDiv" style='background-color:clear;'>
+  <div class="orgDiv" style='background-color:clear;margin-left:250px;'>
 		<form id='orgDataForm'>
 		<table style="margin-left:200px;margin-top:80px;">
 		<tr>
 			<td>
-				<input type='text' id='orgName' name='orgName' class='dataField' placeholder='Orgnization Name' required/>
+				<input type='text' id='orgName' name='orgName' class='dataField' placeholder='Organization Name' required/>
 			</td>
 		</tr>
 		<tr>
@@ -49,7 +49,12 @@ var isEmail = function(email){
 		</tr>
 		<tr>
 			<td>
-				<input type="email" id='empCount' name='empCount' class='digitField' placeholder='emp Count' style='margin-top:10px;' />
+				<input type='text' id='phone' name='email' placeholder='Phone' class='dataField' style='margin-top:10px;' required/>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="email" id='empCount' name='empCount' class='digitField' placeholder='Emp Count' style='margin-top:10px;' />
 			</td>
 		</tr>
 		</table> 

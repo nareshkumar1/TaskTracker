@@ -6,6 +6,7 @@ class OrganizationInfo implements Serializable{
 		long orgId
 		String orgName
 		String orgEmail
+		String phone
 		int employeeCount
 		
 		

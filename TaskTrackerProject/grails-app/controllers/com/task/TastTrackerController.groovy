@@ -47,7 +47,7 @@ class TastTrackerController {
 		if(orgName){
 			render 'failed'
 		}else{
-			def org = adminService.addOrganization(orgId,params.orgName,params.email,params.empCount.toInteger())
+			def org = adminService.addOrganization(orgId,params.orgName,params.email,params.empCount.toInteger()	)
 			render 'success'
 			}
 		}

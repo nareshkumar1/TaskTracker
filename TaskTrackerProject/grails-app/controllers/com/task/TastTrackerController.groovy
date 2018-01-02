@@ -12,7 +12,7 @@ class TastTrackerController {
    
 	static beforeInterceptor = {
 			def requestAction = actionName
-			def ignoreMethods = ['login','createNewAccount','resetPassword']
+			def ignoreMethods = ['login','createNewAccount','resetPassword','createDepartment']
 			if(!ignoreMethods.contains(requestAction)&&session['user']==null){
 				redirect (url:grailsApplication.config.logout.url)
 			}
@@ -33,15 +33,15 @@ class TastTrackerController {
 				}else{
 				 	render 'failed'
 				
-				}
 			}
 		}
+	}
 
 	 def createNewAccount = {
 		render (view:'/tastTracker/createNewAccount')
-		}
+	}
 	 
-	 def addNewOrganization = {
+	def addNewOrganization = {
 		def orgId = Utilities.generateOrganizationId()
 		def orgName = OrganizationInfo.findByOrgNameAndOrgId(params.orgName,orgId)
 		if(orgName){
@@ -49,8 +49,12 @@ class TastTrackerController {
 		}else{
 			def org = adminService.addOrganization(orgId,params.orgName,params.email,params.empCount.toInteger()	)
 			render 'success'
-			}
 		}
+	}
+	
+	 def createDepartment ={
+		 render(view:'/tastTracker/createDepartment')
+	}
 	
 	 def logout = {
 		 if(session)

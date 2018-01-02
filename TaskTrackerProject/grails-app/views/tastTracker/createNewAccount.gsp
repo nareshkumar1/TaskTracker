@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Insert title here</title>
+<title>Setup</title>
 <meta name="layout" content="main"/>
 <script>
 $(document).ready(function(){
@@ -17,7 +17,7 @@ var submitOrgInfo = function(){
 				openDialog('Organization is already exists please try with another Name')
 			}else{
 				openDialog('please check given Email for Admin userId and password')
-				window.location.href='http://localhost:8080/TaskTrackerProject'
+				//window.location.href='http://localhost:8080/TaskTrackerProject'
 			}
 		});
 	}else{
@@ -34,6 +34,8 @@ var isEmail = function(email){
 
 </head>
 <body>
+<div id='createDepartment'></div>
+<div class='loader'></div>
   <div class="orgDiv" style='background-color:clear;margin-left:250px;'>
 		<form id='orgDataForm'>
 		<table style="margin-left:200px;margin-top:80px;">

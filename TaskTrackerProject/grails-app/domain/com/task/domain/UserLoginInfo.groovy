@@ -8,7 +8,7 @@ class UserLoginInfo implements Serializable{
 	String userFullName
 	String emailId
 	boolean isAdmin=false
-	LocationDepartment department
+	boolean isActive=true
 		
 	static hasMany = [userLogins:UserLoginInfoLocation]
 

@@ -36,7 +36,7 @@ var isEmail = function(email){
 <body>
 <div id='createDepartment'></div>
 <div class='loader'></div>
-  <div class="orgDiv" style='background-color:clear;margin-left:250px;'>
+  <div class="orgDiv" style='background-color:clear;margin-left:250px;margin-top:50px;'>
 		<form id='orgDataForm'>
 		<table style="margin-left:200px;margin-top:80px;">
 		<tr>

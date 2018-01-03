@@ -37,13 +37,15 @@ class AdminService {
 			user.save(flush:true)
 	}
 	
-	def addDepartment(def deptName,def org){
-		def dept =LocationDepartment.findByDepartmentNameAndOrganization(deptName,org)
-		if(dept){
-			return false
-		}else{
-			new LocationDepartment('Organization':org,'departmentName':deptName).save(flush:true) 
-			return true
+	def addDepartment(def department,def org){
+		department.each{deptName->
+			def dept =LocationDepartment.findByDepartmentNameAndOrganization(deptName,org)
+			if(dept){
+				return false
+			}else{
+				new LocationDepartment('Organization':org,'departmentName':deptName).save(flush:true)
+				return true
+			}
 		}
 	}
 	

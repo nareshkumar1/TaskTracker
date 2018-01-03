@@ -54,7 +54,7 @@ var validate = function(){
 }
 
 var creatNewAccount = function(){
-	window.location.href='${createLink(controller:"tastTracker",action:"createDepartment")}'
+	window.location.href='${createLink(controller:"tastTracker",action:"addDepartment")}'
 }
 
 </script>

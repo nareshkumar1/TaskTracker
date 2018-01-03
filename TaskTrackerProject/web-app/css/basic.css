@@ -136,3 +136,9 @@
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+.setupdiv{
+	 background-color:clear;
+	 margin-left:250px;
+	 margin-top:50px;
+}

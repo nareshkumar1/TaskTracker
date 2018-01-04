@@ -16,8 +16,7 @@ var submitOrgInfo = function(){
 			if(data=='failed'){
 				openDialog('Organization is already exists please try with another Name')
 			}else{
-				openDialog('please check given Email for Admin userId and password')
-				//window.location.href='http://localhost:8080/TaskTrackerProject'
+				window.location.href='${createLink(controller:'tastTracker',action:'addDepartment')}'
 			}
 		});
 	}else{

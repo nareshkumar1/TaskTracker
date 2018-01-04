@@ -8,6 +8,7 @@ class OrganizationInfo implements Serializable{
 		String orgEmail
 		String phone
 		int employeeCount
+		boolean isActive=true
 		
 		
 		

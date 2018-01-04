@@ -54,13 +54,14 @@ var validate = function(){
 }
 
 var creatNewAccount = function(){
+	$('#loginDiv').fadeOut('slow')
 	window.location.href='${createLink(controller:"tastTracker",action:"addDepartment")}'
 }
 
 </script>
  </head>
 <body>
-	<div style='height:350px;width:700px;margin-right:0px;margin-left:200px;margin-top:100px; background-color:clear;'>
+	<div id='loginDiv' style='height:350px;width:700px;margin-right:0px;margin-left:200px;margin-top:100px; background-color:clear;'>
 		<form id='loginForm' name='loginForm'>
 		<table style='margin-left:50px;margin-top:150px;height:100px;background-color:clear'>
 			<tr>

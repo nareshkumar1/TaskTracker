@@ -40,11 +40,11 @@ class AdminService {
 	def addDepartment(def department,def org){
 		department.each{deptName->
 			def dept =LocationDepartment.findByDepartmentNameAndOrganization(deptName,org)
-			if(dept){
-				return false
-			}else{
+			if(!dept){
 				new LocationDepartment('Organization':org,'departmentName':deptName).save(flush:true)
 				return true
+			}else{
+				return false
 			}
 		}
 	}

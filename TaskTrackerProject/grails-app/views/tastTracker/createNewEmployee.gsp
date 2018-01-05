@@ -5,32 +5,45 @@
 <meta name="layout" content="main"/>
 <title>Insert title here</title>
 </head>
+<script>
+var addEmployee = function(){
+	
+}
+
+</script>
 <body>
-  <div class="body">
-  <div style='margin-left:100px; margin-top:50px'>
+  <div>
+  <div style='margin-left:400px; margin-top:50px'>
   	<form action="">
-  		<table style='' class='userTable'>
+  	<div class="input-group">
+  		<table style='style="margin-left:300px'>
+  		<tr style='height:70px'>
+  		<td>
+  		<g:select class="dropdown-toggle form-control" data-toggle="dropdown" name="deptName" noSelection="${['':'Select Department']}" from="${dept.departmentName}" />
+  		</td>
+  		</tr>
   		<tr >
   		<td>
-  			<input type='text' id='userFullName' class='dataField' placeholder="Full Name"/>
+  			<input type='text' name='userFullName' id='userFullName' class='form-control' placeholder="Full Name"/>
   		</td>
   		<tr style='height:70px'>
   		<td>
-  			<input type='text' id='userName' class='dataField' placeholder="User name"/>
+  			<input type='text' name='userName' id='userName' class='form-control' placeholder="User name"/>
   		</td>
   		<tr>
   		<td>
-  			<input type='password' id='Password' class='dataField' placeholder="Password"/>
+  			<input type='password'  name='Password' id='Password' class='form-control' placeholder="Password"/>
   		</td>
   		</tr>
   		<tr style='height:70px'>
   		<td>
-  			<input type='email' id='Email' class='dataField' placeholder="Email Address"/>
+  			<input type='email' name='Email' id='Email' class='form-control' placeholder="Email Address"/>
   		</td>
   		</tr>
+  		<tr><td><input type='button' value='Submit' class='bigButton shadowBox btn btn-info btn-lg'></td></tr>
   		</table>
+  	</div>
   	</form>
-  <button type='button' id='submit' class='bigButton'>Submit</button>
   </div>
   </div>
 </body>

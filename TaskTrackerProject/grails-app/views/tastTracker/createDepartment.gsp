@@ -10,7 +10,7 @@ $('#add').click(function(e){
 		$('#departmentTable tr:last').before(
 				"<tr style='height:40px;'>"
 				+"<td><input name='depName' type='text' class='form-control' placeholder='Department Name'></td>"
-				+"<td id='deptTd'><a onclick='removeRow(this)' class='btn btn-info btn-sm'>&times;</a>"
+				+"<td id='deptTd'><a style='margin-left:10px;' onclick='removeRow(this)' class='btn btn-info btn-sm'>&times;</a>"
 				+"</td></tr>"
 			)
 	})
@@ -59,7 +59,7 @@ var addDepartment = function(){
 			<input name='depName' data-toggle="tooltip" data-placement="left" title="Predefined department" type='text' class='form-control' placeholder='Department Name' value='Admin'>
 		</td>
 		<td style='pedding:50px;'>
-			<a style='pedding:50px;' type="button" id="add" class="btn btn-info btn-sm">+</a>
+			<a style='margin-left:10px;' type="button" id="add" class="btn btn-info btn-sm">+</a>
 		</td>
 	</tr>
 	</tbody>

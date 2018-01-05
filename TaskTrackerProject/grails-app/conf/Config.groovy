@@ -106,7 +106,7 @@ grails.hibernate.osiv.readonly = false
 environments {
     development {
         grails.logging.jul.usebridge = true
-		logout.url = "http://localhost:8080/TaskTrackerProject"
+		logout.url = "http://localhost:8090/TaskTrackerProject"
     }
     production {
         grails.logging.jul.usebridge = false

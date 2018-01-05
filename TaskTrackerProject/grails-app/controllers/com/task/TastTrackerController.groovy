@@ -2,6 +2,7 @@ package com.task
 
 import com.task.domain.UserLoginInfo
 import com.task.domain.OrganizationInfo
+import com.task.domain.LocationDepartment
 import com.taskTracker.utils.Utilities
 
 
@@ -12,7 +13,7 @@ class TastTrackerController {
    
 	static beforeInterceptor = {
 			def requestAction = actionName
-			def ignoreMethods = ['login','createNewAccount','resetPassword','addDepartment']
+			def ignoreMethods = ['login','createNewAccount','resetPassword','addDepartment','createNewEmployee']
 			if(!ignoreMethods.contains(requestAction)&&session['user']==null){
 				redirect (url:grailsApplication.config.logout.url)
 			}
@@ -74,16 +75,12 @@ class TastTrackerController {
 	 }
 	 
 	 def createNewEmployee = {
-		 		
-		render (view:'/tastTracker/createNewEmployee')
+		 def dept = LocationDepartment.findAllByOrganization(session.organization)		
+		render (view:'/tastTracker/createNewEmployee',model:['dept':dept])
 	
 	 }
 	 
-	 def getOrgnizationDetail = {
-		 
-	 }
-	 
-	 def saveNewEmployee = {
+	def saveNewEmployee = {
 	 		
 	 }
 	 

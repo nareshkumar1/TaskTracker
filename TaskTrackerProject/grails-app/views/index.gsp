@@ -80,6 +80,13 @@ var creatNewAccount = function(){
 			</div>
 			</td>
 		</tr>
+		<tr>
+		<td>
+		<div class="checkbox">
+    		<label><input type="checkbox"> Remember me</label>
+  		</div>
+		</td>
+		</tr>
 		<tr style='height:40px;'>
 			<td><a id="forgotPassword" href="#" onclick="resetPassword()">Forgot password</a> </td>
 		</tr>

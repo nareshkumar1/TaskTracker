@@ -16,7 +16,7 @@ var addEmployee = function(){
   <div style='margin-left:400px; margin-top:50px'>
   	<form action="">
   	<div class="input-group">
-  		<table style='style="margin-left:300px'>
+  		<table style='margin-left:300px'>
   		<tr style='height:70px'>
   		<td>
   		<g:select class="dropdown-toggle form-control" data-toggle="dropdown" name="deptName" noSelection="${['':'Select Department']}" from="${dept.departmentName}" />

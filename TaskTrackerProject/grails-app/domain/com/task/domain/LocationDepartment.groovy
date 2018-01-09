@@ -8,7 +8,6 @@ class LocationDepartment implements Serializable {
 	long departmentId
 	String departmentName
 	
-	
 	static constraint = {
 	}
 	

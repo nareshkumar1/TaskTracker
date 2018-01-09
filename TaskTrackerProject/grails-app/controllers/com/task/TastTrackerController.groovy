@@ -4,6 +4,7 @@ import com.task.domain.UserLoginInfo
 import com.task.domain.OrganizationInfo
 import com.task.domain.LocationDepartment
 import com.taskTracker.utils.Utilities
+import com.task.domain.Role
 
 
 class TastTrackerController {
@@ -58,13 +59,23 @@ class TastTrackerController {
 	}
 	
 	 def doAddDepartment = {
-		 def dept = params.depName
-		 def status= adminService.addDepartment(dept, session.organization)
-		 if(status==true){
-			 render 'success'
-		 }else{
-		 	 render 'failed'
-		 }
+		 def department = params.depName
+		 department.each{deptName->
+			def dept =LocationDepartment.findByDepartmentNameAndOrganization(deptName,session.organization)
+			if(!dept){
+				new LocationDepartment('Organization':session.organization,'departmentName':deptName).save(flush:true)
+				render "successful"
+			}else{
+				dept.departmentName=deptName
+				dept.organization=session.organization
+				dept.save(flush:true)
+				render 'updated'
+			}
+		}
+	 }
+	 
+	 def addRole = {
+		def role = Role.findByOrganizationAndRole(session.organization,params.roleName)
 	 }
 	 
 	 def logout = {
@@ -80,8 +91,17 @@ class TastTrackerController {
 	
 	 }
 	 
-	def saveNewEmployee = {
-	 		
+	def saveEmployee = {
+		def org =OrganizationInfo.findByOrgId(session.organization.orgId)
+		def userId = params.userName
+		def password =params.password
+		def isAdmin=true
+		def userFullName =params.userFullName
+		def userEmail =params.email
+		def deptName = params.deptName
+		def isActive =true
+		def role = 
+		adminService.createNewUser(org,userId,password,isAdmin,userFullName,isActive,deptName,role)
 	 }
 	 
 	 def resetPassword = {

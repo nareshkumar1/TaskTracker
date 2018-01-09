@@ -3,9 +3,11 @@ package com.task.services
 import grails.transaction.Transactional
 
 import com.task.domain.OrganizationInfo
+import com.task.domain.UserDepartmentRole
 import com.task.domain.UserLoginInfo
 import com.task.domain.UserLoginInfoLocation
 import com.task.domain.LocationDepartment
+import com.task.domain.Role
 
 @Transactional
 class AdminService {
@@ -22,22 +24,26 @@ class AdminService {
 			createNewUser(organization,orgEmail,'admin',true,orgName)*/
 		}
 	
-	def createNewUser(def org,def userId, def password, def isAdmin, def userFullName,def dept){
+	def createNewUser(def org,def userId,def userEmail, def password, def isAdmin, def userFullName,def isActive,def deptName,def role){
 			def user = new UserLoginInfo()
 			user.setUserName(userId)
 			user.setPassword(password)
 			user.setIsAdmin(isAdmin)
-			user.setEmailId(userId)
+			user.setEmailId(userEmail)
 			user.setUserFullName(userFullName)
-			user.setIsActive(true)
+			user.setIsActive(isActive)
 			def userLocation = new UserLoginInfoLocation(['user':user,'orgInfo':org])
+			def department = LocationDepartment.findByOrganizationAndDepartmentName(org,deptName)
+			def userRole =Role.findByOrganizationAndRole(org,role)
+			def userDepartment = new UserDepartmentRole(['user':user,'locationDepartment':department,'role':userRole])
 			user.addToUserLogins(userLocation)
 			org.addToUserLogin(userLocation)
 			org.save()
 			user.save(flush:true)
+			userDepartment.save(flush:true)
 	}
 	
-	def addDepartment(def department,def org){
+	/*def addDepartment(def department,def org){
 		department.each{deptName->
 			def dept =LocationDepartment.findByDepartmentNameAndOrganization(deptName,org)
 			if(!dept){
@@ -48,7 +54,7 @@ class AdminService {
 			}
 		}
 	}
-	
+	*/
 	def checkUser(def userId){
 		def user = UserLoginInfo.findByUserName(userId)
 		if(user){

@@ -7,19 +7,21 @@
 </head>
 <script>
 var addEmployee = function(){
-	
+	$.post('${createLink(controller:"tastTracker",action:"saveEmployee")}',$("#employeeForm").serialize(),function(data){
+			
+		});
 }
 
 </script>
 <body>
   <div>
-  <div style='margin-left:400px; margin-top:50px'>
-  	<form action="">
+  <div style='margin-left:200px; margin-top:50px'>
+  	<form id="employeeForm" >
   	<div class="input-group">
-  		<table style='margin-left:300px'>
+  		<table style='margin-left:200px'>
   		<tr style='height:70px'>
   		<td>
-  		<g:select class="dropdown-toggle form-control" data-toggle="dropdown" name="deptName" noSelection="${['':'Select Department']}" from="${dept.departmentName}" />
+  		<g:select class="dropdown-toggle form-control" data-toggle="dropdown" name="deptName" noSelection="${['':'Admin']}" from="${dept?.departmentName}" />
   		</td>
   		</tr>
   		<tr >
@@ -37,7 +39,7 @@ var addEmployee = function(){
   		</tr>
   		<tr style='height:70px'>
   		<td>
-  			<input type='email' name='Email' id='Email' class='form-control' placeholder="Email Address"/>
+  			<input type='email' name='email' id='Email' class='form-control' placeholder="Email Address"/>
   		</td>
   		</tr>
   		<tr><td><input type='button' value='Submit' class='bigButton shadowBox btn btn-info btn-lg'></td></tr>

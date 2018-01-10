@@ -33,29 +33,27 @@ var isEmail = function(email){
 
 </head>
 <body>
-<div id='createDepartment'></div>
-<div class='loader'></div>
   <div class="orgDiv" style='background-color:clear;margin-left:250px;margin-top:50px;'>
 		<form id='orgDataForm'>
 		<table style="margin-left:200px;margin-top:80px;">
 		<tr>
 			<td>
-				<input type='text' id='orgName' name='orgName' class='dataField' placeholder='Organization Name' required/>
+				<input type='text' id='orgName' name='orgName' class='form-control' placeholder='Organization Name' style="width:300px;"/>
 			</td>
 		</tr>
 		<tr>
 			<td>
-				<input type='text' id='email' name='email' placeholder='email@org.com' class='dataField' style='margin-top:10px;' required/>
+				<input type='text' id='email' name='email' placeholder='email@org.com' class='form-control' style='margin-top:10px;width:300px;' required/>
 			</td>
 		</tr>
 		<tr>
 			<td>
-				<input type='text' id='phone' name='email' placeholder='Phone' class='dataField' style='margin-top:10px;' required/>
+				<input type='text' id='phone' name='phone' placeholder='Phone' class='form-control' style='margin-top:10px;width:300px;' required/>
 			</td>
 		</tr>
 		<tr>
 			<td>
-				<input type="email" id='empCount' name='empCount' class='digitField' placeholder='Emp Count' style='margin-top:10px;' />
+				<input type="email" id='empCount' name='empCount' class='form-control' placeholder='Emp Count' style='margin-top:10px;width:300px;' />
 			</td>
 		</tr>
 		</table> 

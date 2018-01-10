@@ -22,6 +22,10 @@ $('#addRole').click(function(e){
 		)
 })
 	$('[data-toggle="tooltip"]').tooltip();
+
+	$("#deptNext").click(function(){
+		addDepartment()
+		})
 })
 var removeRow = function(button){
 	$(button).parent().parent().remove();
@@ -45,11 +49,12 @@ var addDepartment = function(){
 	else{
 		var dept = $('#depForm').serialize()
 		$.post('${createLink(controller:"tastTracker",action:"doAddDepartment")}',$("#depForm").serialize(),function(data){
-				openDialog(data)
+				
 			if(data=='success'){
 				addRole()
 			}else{
-				openDialog("failed")
+				openDialog(data)
+				//openDialog("failed")
 			}
 		})
 	}
@@ -59,12 +64,14 @@ var addRole =function(){
 	if(emptyBlockes()>0){
 			openDialog("Fields can't be left blank")
 		}else{
-			$.post('${createLink(controller:"tastTracket",action:"addRole")}',$("#depForm").serialize(),function(data)){
+			$.post('${createLink(controller:"tastTracket",action:"addRole")}',$("#roleForm").serialize(),function(data){
 					if(data=='success'){
 						openDialog("successFull")
 						window.location.href='${createLink(controller:"tastTracker",index:"createNewEmployee")}'
+					}else{
+						alert("F")
 					}
-				}
+				});
 			}
 }
 </script>
@@ -86,7 +93,7 @@ var addRole =function(){
 	</tbody>
 	<tr>
 		<td>
-			<input type='button' class='bigButton shadowBox btn btn-info btn-lg' value='Next' id='deptNext' onclick='addDepartment()'>
+			<input type='button' class='bigButton shadowBox btn btn-info btn-lg' value='Next' id='deptNext'>
 		</td>
 	</tr>
 	</table>

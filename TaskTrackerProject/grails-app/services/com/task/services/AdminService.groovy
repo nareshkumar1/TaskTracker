@@ -12,14 +12,14 @@ import com.task.domain.Role
 @Transactional
 class AdminService {
 
-    def addOrganization(def orgId,def orgName,def orgEmail,def empCount,def dept) {
+    def addOrganization(def orgId,def orgName,def orgEmail,def empCount,def phone) {
 			def organization = new OrganizationInfo()
 			organization.setOrgId(orgId)
 			organization.setOrgName(orgName)
 			organization.setOrgEmail(orgEmail)
+			organization.setPhone(phone)
 			organization.setEmployeeCount(empCount)
-			organization.save(flush:true)
-			session['organization']=OrganizationInfo.findByOrgId(orgId)
+			organization.save()
 			/*addDepartment(dept,organization)
 			createNewUser(organization,orgEmail,'admin',true,orgName)*/
 		}

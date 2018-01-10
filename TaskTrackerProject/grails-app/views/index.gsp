@@ -83,12 +83,11 @@ var creatNewAccount = function(){
 		<tr>
 		<td>
 		<div class="checkbox">
-    		<label><input type="checkbox"> Remember me</label>
+    		<label><input type="checkbox">Remember me</label>
+    		<a id="forgotPassword" href="#" onclick="resetPassword()" style="margin-left:75px;">Forgot password</a>
   		</div>
+  		
 		</td>
-		</tr>
-		<tr style='height:40px;'>
-			<td><a id="forgotPassword" href="#" onclick="resetPassword()">Forgot password</a> </td>
 		</tr>
 			<tr>
 				<td>
@@ -102,7 +101,7 @@ var creatNewAccount = function(){
 		</form>
 	</div>
 	<div class="modal fade" id="dialog" role="dailog">
-	<div class="modal-dialog">
+	<div class="modal-dialog"  style="width:400px;margin-top:200px">
 		<div class="modal-content">
         	<div class="modal-header">
           	<button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -111,8 +110,9 @@ var creatNewAccount = function(){
         <div class="modal-body">
     <table>
 		<tr>
-		<td><p style='font-family:sans-serif;'>Registered Email : </p></td>
-		<td><input type='text' id='registerdEmail' ></td>
+		
+		<td><div class="input-group"><span class="input-group-addon">Registered Email </span>
+		<input type='text' id='registerdEmail' class="form-control"></div></td>
 		</tr>
 	</table>
 		<p id='errorLable'></p>

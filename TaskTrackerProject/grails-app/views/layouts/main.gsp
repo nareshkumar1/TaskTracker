@@ -28,11 +28,11 @@
 	</head>
 	<body  background='background/background_new2.jpg'>
   <div class="modal fade" id="sucessDialog" role="dialog">
-    <div class="modal-dialog modal-sm">
+    <div class="modal-dialog modal-sm" style="width:400px;margin-top:200px">
     
       <!-- Modal content-->
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header" style="background-color:dimmWhite">
         </div>
         <div class="modal-body">
           <p id='inputData'></p>
@@ -66,7 +66,7 @@
           </ul>
         </li>
         <li><a href="#">Page 2</a></li>
-        <li><a href="#">SETUP</a></li>
+        <li><a href="#">Setup</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right ">
         	<li class='dropdown' >

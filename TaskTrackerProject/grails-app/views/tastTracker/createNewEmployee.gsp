@@ -15,15 +15,10 @@ var addEmployee = function(){
 </script>
 <body>
   <div>
-  <div style='margin-left:200px; margin-top:50px'>
+  <div style='margin-left:200px; margin-top:100px'>
   	<form id="employeeForm" >
   	<div class="input-group">
   		<table style='margin-left:200px'>
-  		<tr style='height:70px'>
-  		<td>
-  		<g:select class="dropdown-toggle form-control" data-toggle="dropdown" name="deptName" noSelection="${['':'Admin']}" from="${dept?.departmentName}" />
-  		</td>
-  		</tr>
   		<tr >
   		<td>
   			<input type='text' name='userFullName' id='userFullName' class='form-control' placeholder="Full Name"/>
@@ -42,7 +37,21 @@ var addEmployee = function(){
   			<input type='email' name='email' id='Email' class='form-control' placeholder="Email Address"/>
   		</td>
   		</tr>
-  		<tr><td><input type='button' value='Submit' class='bigButton shadowBox btn btn-info btn-lg'></td></tr>
+  		<tr>
+  			<td>
+  				<g:select class="dropdown-toggle form-control" data-toggle="dropdown" name="deptName" noSelection="${['':'Select Department']}" from="${dept?.departmentName}" />
+  			</td>
+  		</tr>
+  		<tr style='height:70px'>
+  			<td>
+  				<g:select class="dropdown-toggle form-control" data-toggle="dropdown" name="roleName" noSelection="${['':'Select Role']}" from="${role?.role}" />
+  			</td>
+  		</tr>
+  		<tr>
+  			<td>
+  				<input type='button' value='Submit' class='bigButton shadowBox btn btn-info btn-lg'>
+  			</td>
+  		</tr>
   		</table>
   	</div>
   	</form>

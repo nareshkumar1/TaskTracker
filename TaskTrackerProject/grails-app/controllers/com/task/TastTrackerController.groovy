@@ -49,7 +49,8 @@ class TastTrackerController {
 		if(orgName){
 			render 'failed'
 		}else{
-			def org = adminService.addOrganization(orgId,params.orgName,params.email,params.empCount.toInteger()	)
+			def org = adminService.addOrganization(orgId,params.orgName,params.email,params.empCount.toInteger(),params.phone)
+			session['organization']=OrganizationInfo.findByOrgId(orgId)
 			render 'success'
 		}
 	}
@@ -59,12 +60,17 @@ class TastTrackerController {
 	}
 	
 	 def doAddDepartment = {
-		 def department = params.depName
+		 def department = params.depName.class.isArray()?params.depName:[params.depName]
 		 department.each{deptName->
+			 println deptName
 			def dept =LocationDepartment.findByDepartmentNameAndOrganization(deptName,session.organization)
+				println 'session orgId '+session.organization.orgId	
+				println dept
 			if(!dept){
-				new LocationDepartment('Organization':session.organization,'departmentName':deptName).save(flush:true)
-				render "successful"
+				dept =new LocationDepartment('organization':session.organization,'departmentName':deptName).save(flush:true)
+				dept.save(flush:true)
+				println "getting in creating dept"
+				render "success"
 			}else{
 				dept.departmentName=deptName
 				dept.organization=session.organization
@@ -75,7 +81,19 @@ class TastTrackerController {
 	 }
 	 
 	 def addRole = {
-		def role = Role.findByOrganizationAndRole(session.organization,params.roleName)
+		 def roles =params.roleName.class.isArray()?params.roleName:[params.roleName]
+		 
+		 roles.each{role->
+			 println role
+			 def orgRole = Role.findByOrganizationAndRole(session.organization,role)
+			 if(orgRole){
+				 render "Role type is already Exists"
+			 }else{
+			 	render 'success'
+			 	orgRole =new Role(["role":role,"organization":session.organization])
+				 orgRole.save()
+			 } 
+		 }
 	 }
 	 
 	 def logout = {
@@ -86,8 +104,10 @@ class TastTrackerController {
 	 }
 	 
 	 def createNewEmployee = {
-		 def dept = LocationDepartment.findAllByOrganization(session.organization)		
-		render (view:'/tastTracker/createNewEmployee',model:['dept':dept])
+		 def dept = LocationDepartment.findAllByOrganization(session.organization)
+		 def roles = Role.findAllByOrganization(session.organization)
+		 println 'Clicked here'		
+		render (view:'/tastTracker/createNewEmployee',model:['dept':dept,'role':roles])
 	
 	 }
 	 
@@ -100,7 +120,7 @@ class TastTrackerController {
 		def userEmail =params.email
 		def deptName = params.deptName
 		def isActive =true
-		def role = 
+		def role = params.roleName
 		adminService.createNewUser(org,userId,password,isAdmin,userFullName,isActive,deptName,role)
 	 }
 	 

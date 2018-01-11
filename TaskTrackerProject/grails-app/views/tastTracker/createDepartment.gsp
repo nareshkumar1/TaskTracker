@@ -12,7 +12,7 @@ $('#addDep').click(function(e){
 				+"<td id='deptTd'><a style='margin-left:10px;' onclick='removeRow(this)' class='btn btn-info btn-sm'>&times;</a>"
 				+"</td></tr>"
 			)
-	})
+	});
 $('#addRole').click(function(e){
 	$('#roleTable tr:last').after(
 			"<tr style='height:40px;'>"
@@ -20,13 +20,13 @@ $('#addRole').click(function(e){
 			+"<td id='deptTd'><a style='margin-left:10px;' onclick='removeRow(this)' class='btn btn-info btn-sm'>&times;</a>"
 			+"</td></tr>"
 		)
-})
+});
 	$('[data-toggle="tooltip"]').tooltip();
+	//$("#deptNext").click(function(){
+	//	addDepartment()
+	//	});
+});
 
-	$("#deptNext").click(function(){
-		addDepartment()
-		})
-})
 var removeRow = function(button){
 	$(button).parent().parent().remove();
 	
@@ -45,16 +45,13 @@ var emptyBlockes = function(){
 var addDepartment = function(){
 	if(emptyBlockes()>0){
 		openDialog("fields can't be left blank")
-		}
-	else{
-		var dept = $('#depForm').serialize()
+		}else{
 		$.post('${createLink(controller:"tastTracker",action:"doAddDepartment")}',$("#depForm").serialize(),function(data){
-				
 			if(data=='success'){
+				openDialog("success")
 				addRole()
 			}else{
-				openDialog(data)
-				//openDialog("failed")
+				openDialog("failed")
 			}
 		})
 	}
@@ -64,12 +61,12 @@ var addRole =function(){
 	if(emptyBlockes()>0){
 			openDialog("Fields can't be left blank")
 		}else{
-			$.post('${createLink(controller:"tastTracket",action:"addRole")}',$("#roleForm").serialize(),function(data){
+			$.post('${createLink(controller:"tastTracker",action:"addRole")}',$("#roleForm").serialize(),function(data){
 					if(data=='success'){
 						openDialog("successFull")
-						window.location.href='${createLink(controller:"tastTracker",index:"createNewEmployee")}'
+						window.location.href='${createLink(controller:"tastTracker",action:"createNewEmployee")}'
 					}else{
-						alert("F")
+						openDialog(data)
 					}
 				});
 			}
@@ -84,7 +81,7 @@ var addRole =function(){
 	<tbody>
 	<tr style='height:40px;'>
 		<td>
-			<input name='depName' data-toggle="tooltip" data-placement="left" title="Department need to added" type='text' class='form-control' placeholder='Department Name' value='Admin'>
+			<input name='depName' data-toggle="tooltip" data-placement="left" title="Department ex HR,Admin,..." type='text' class='form-control' placeholder='Department Name' value='Admin'>
 		</td>
 		<td style='pedding:50px;'>
 			<a style='margin-left:10px;' type="button" id="addDep" class="btn btn-info btn-sm">+</a>
@@ -93,7 +90,7 @@ var addRole =function(){
 	</tbody>
 	<tr>
 		<td>
-			<input type='button' class='bigButton shadowBox btn btn-info btn-lg' value='Next' id='deptNext'>
+			<input type='button' class='bigButton shadowBox btn btn-info btn-lg' value='Next' id='deptNext' onclick="addDepartment()">
 		</td>
 	</tr>
 	</table>

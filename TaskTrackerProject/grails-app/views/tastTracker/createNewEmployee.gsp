@@ -3,16 +3,38 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
 <meta name="layout" content="main"/>
-<title>Insert title here</title>
-</head>
+<title>Add User</title>
+
 <script>
-var addEmployee = function(){
-	$.post('${createLink(controller:"tastTracker",action:"saveEmployee")}',$("#employeeForm").serialize(),function(data){
-			
+$(document).ready(function(){
+	$("#saveButton").click(function(){
+		addUser()
+	})
+})
+
+var isValidate = function(){
+	var valid = true;
+	$('input[type=text]').each(function(){
+			if(this.value=="")
+				valid=false		
+	})
+	return valid
+}
+
+var addUser = function(){
+	if(isValidate()==true){
+		$.post('${createLink(controller:"tastTracker",action:"saveUser")}',$("#employeeForm").serialize(),function(data){
+			if(data=='success')
+				openDialog('Employee added successfully')
+				window.location.href ='${createLink(contoller:"tastTracker",action:"logout")}'
 		});
+	}else{
+		openDialog("Please fill all details")
+	}
 }
 
 </script>
+</head>
 <body>
   <div>
   <div style='margin-left:200px; margin-top:100px'>
@@ -29,27 +51,27 @@ var addEmployee = function(){
   		</td>
   		<tr>
   		<td>
-  			<input type='password'  name='Password' id='Password' class='form-control' placeholder="Password"/>
+  			<input type='password'  name='password' id='password' class='form-control' placeholder="Password"/>
   		</td>
   		</tr>
   		<tr style='height:70px'>
   		<td>
-  			<input type='email' name='email' id='Email' class='form-control' placeholder="Email Address"/>
+  			<input type='email' name='email' id='email' class='form-control' placeholder="Email Address"/>
   		</td>
   		</tr>
   		<tr>
   			<td>
-  				<g:select class="dropdown-toggle form-control" data-toggle="dropdown" name="deptName" noSelection="${['':'Select Department']}" from="${dept?.departmentName}" />
+  				<g:select id='depts' class="dropdown-toggle form-control" data-toggle="dropdown" name="deptName" noSelection="${['':'Select Department']}" from="${dept?.departmentName}" />
   			</td>
   		</tr>
   		<tr style='height:70px'>
   			<td>
-  				<g:select class="dropdown-toggle form-control" data-toggle="dropdown" name="roleName" noSelection="${['':'Select Role']}" from="${role?.role}" />
+  				<g:select id='roles' class="dropdown-toggle form-control" data-toggle="dropdown" name="roleName" noSelection="${['':'Select Role']}" from="${role?.role}" />
   			</td>
   		</tr>
   		<tr>
   			<td>
-  				<input type='button' value='Submit' class='bigButton shadowBox btn btn-info btn-lg'>
+  				<input type='button' id='saveButton' value='Submit' class='bigButton shadowBox btn btn-info btn-lg'>
   			</td>
   		</tr>
   		</table>

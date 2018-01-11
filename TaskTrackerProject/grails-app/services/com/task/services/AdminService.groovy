@@ -19,17 +19,17 @@ class AdminService {
 			organization.setOrgEmail(orgEmail)
 			organization.setPhone(phone)
 			organization.setEmployeeCount(empCount)
-			organization.save()
+			organization.save(flush:true)
 			/*addDepartment(dept,organization)
 			createNewUser(organization,orgEmail,'admin',true,orgName)*/
 		}
 	
-	def createNewUser(def org,def userId,def userEmail, def password, def isAdmin, def userFullName,def isActive,def deptName,def role){
+	def createNewUser(def org, def userId, def email, def password, def isAdmin, def userFullName,def isActive,def deptName,def role){
 			def user = new UserLoginInfo()
 			user.setUserName(userId)
 			user.setPassword(password)
 			user.setIsAdmin(isAdmin)
-			user.setEmailId(userEmail)
+			user.setEmailId(email)
 			user.setUserFullName(userFullName)
 			user.setIsActive(isActive)
 			def userLocation = new UserLoginInfoLocation(['user':user,'orgInfo':org])

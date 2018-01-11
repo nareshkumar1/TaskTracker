@@ -9,6 +9,14 @@ class LocationDepartment implements Serializable {
 	String departmentName
 	
 	static constraint = {
+		
+	}
+	
+	def beforeInsert(){
+		if(!departmentId&&departmentId==0){
+			def nextDepartmentIds = LocationDepartment.executeQuery('select max(departmentId)+1 from LocationDepartment where organization=:organization',['organization':organization])
+			this.departmentId =(nextDepartmentIds&&nextDepartmentIds[0])?nextDepartmentIds[0]:1
+		}
 	}
 	
 	static mapping = {

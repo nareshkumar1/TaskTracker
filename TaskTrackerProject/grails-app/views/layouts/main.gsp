@@ -17,7 +17,9 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
 		<!-- Latest compiled and minified JavaScript -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script><script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet'  type='text/css'>
+		<script>
 
 		var openDialog = function(input){
 				$("#inputData").text(input);
@@ -66,14 +68,16 @@
           </ul>
         </li>
         <li><a href="#">Page 2</a></li>
-        <li><a href="#">Setup</a></li>
+        <g:if test='${session.user.isAdmin}'>
+           <li><a href="#">Setup</a></li>
+        </g:if>
       </ul>
       <ul class="nav navbar-nav navbar-right ">
         	<li class='dropdown' >
         	<a  class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> ${session.user.userFullName}</a>
         	<ul class="dropdown-menu">
-        	<li><a href="#">Update Profile</a></li>
-            <li><a href="#" onclick='resetPassword()'>Change Password</a></li>
+        	<li><a href='${createLink(controller:"tastTracker",action:"editProfile")}'>Update Profile</a></li>
+            <li><a href='${createLink(controller:"tastTracker",action:"changePassword")}'>Change Password</a></li>
             <li><a href="#">Change Setting</a></li>
         	</ul>
         	</li>

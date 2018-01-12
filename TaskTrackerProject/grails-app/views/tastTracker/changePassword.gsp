@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
+<meta name="layout" content="main"/>
 <script>
 $(document).ready(function(){
 	$("#resetPass").click(function(){
@@ -11,14 +12,24 @@ $(document).ready(function(){
 	}
 	});
 });
+var showPassword =function(){
+	if($("#showPassword").prop('checked')==true){
+		$("#password1").attr('type','text')
+		$("#password2").attr('type','text')
+		}
+	else{
+		$("#password1").attr('type','password')
+		$("#password2").attr('type','password')
+	}
+}
 </script>
 </head>
 <body>
-  <div>
-  	<table>
+  <div  style='margin-left:35%;' >
+  	<table style='margin-left:0;margin-top:50px'>
   	<tr>
   		<td>
-  		<label id="user" style="margin-left:70px;">${session.user.emailId}</label>
+  		<label id="user" class='appFont' style="margin-left:75px;font-size:18px">${session.user.userName}</label>
   		</td>
   	</tr>
   	<tr  style='height:60px;'>
@@ -31,7 +42,14 @@ $(document).ready(function(){
   		<input type="password" class="form-control" id="password2" placeholder="Confirm Password" style="width:260px"/>
   		</td>
   	</tr>
-  	<tr style='height:60px;'>
+  	<tr>
+  		<td>
+  		<div class='checkbox'>
+  			<label><input id="showPassword" class='appFont' type="checkbox" onchange='showPassword()'>Show password</label>
+  		</div>
+  		</td>
+  	</tr>
+  	<tr>
   		<td>
   		<input type="button" class="shadowBox btn btn-info btn-sm" id="resetPass"  value="Reset" style="width:260px"/>
   		</td>

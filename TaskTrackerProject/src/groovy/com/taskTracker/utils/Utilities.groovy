@@ -9,7 +9,7 @@ class Utilities {
 	static def generateOrganizationId(){
 		long orgId=0
 		orgId =Math.abs(new Random().nextInt()%9000000)+1000000
-		println orgId
+		println orgId.class
 		return orgId
 	}
 }

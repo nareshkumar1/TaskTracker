@@ -12,8 +12,7 @@ $(document).ready(function(){
 });
 
 var logout = function(){
-	$.post('${createLink(controller:"tastTracker",action:"logout")}',{},function(data){
-	});
+	window.location.href ='${createLink(controller:"tastTracker",action:"logout")}'
 }
 
 var resetPassword = function(){
@@ -34,7 +33,7 @@ var doResetPassword = function(){
 </script>
 </head>
 <body>
-  <div id='passwordReset' style='margin-left:500px;margin-top:100px'>
+  <div id='passwordReset'>
   
   </div>
 </body>

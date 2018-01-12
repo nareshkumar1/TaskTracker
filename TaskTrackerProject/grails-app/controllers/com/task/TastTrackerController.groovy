@@ -14,7 +14,6 @@ class TastTrackerController {
    
 	static beforeInterceptor = {
 			def requestAction = actionName
-			println requestAction
 			def ignoreMethods = ['login','createNewAccount','resetPassword','addDepartment','doAddDepartment','addRole','createNewEmployee']
 			if(!ignoreMethods.contains(requestAction)&&session['user']==null&&session['organization']==null){
 				redirect (url:grailsApplication.config.logout.url)
@@ -131,6 +130,9 @@ class TastTrackerController {
 		 }else{
 		 	 render "failure"
 		 }
+	 }
+	 def editProfile ={
+		 render (view:'/tastTracker/editUser')
 	 }
 	 
 	 def changePassword = {

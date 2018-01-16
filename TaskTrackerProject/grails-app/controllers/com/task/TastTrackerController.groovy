@@ -132,8 +132,13 @@ class TastTrackerController {
 		 	 render "failure"
 		 }
 	 }
-	 def editProfile ={
+	 
+	 def editUser = {
 		 render (view:'/tastTracker/editUser')
+	 }
+	 
+	 def doEditUser = {
+		 def user = UserLoginInfo
 	 }
 	 
 	 def changePassword = {

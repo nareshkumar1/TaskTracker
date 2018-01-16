@@ -54,11 +54,11 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand uppercase">${session?.user.getOrganizationName()[0]}</a>
+      <a class="navbar-brand uppercase appText">${session?.user.getOrganizationName()[0]}</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href='${createLink(controller:"tastTracker",action:"index")}' class='uppercase'>Home</a></li>
+        <li class="active "><a href='${createLink(controller:"tastTracker",action:"index")}' class='uppercase'>Home</a></li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -76,7 +76,7 @@
         	<li class='dropdown' >
         	<a  class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> ${session.user.userFullName}</a>
         	<ul class="dropdown-menu">
-        	<li><a href='${createLink(controller:"tastTracker",action:"editProfile")}'>Update Profile</a></li>
+        	<li><a href='${createLink(controller:"tastTracker",action:"editUser")}'>Update Profile</a></li>
             <li><a href='${createLink(controller:"tastTracker",action:"changePassword")}'>Change Password</a></li>
             <li><a href="#">Change Setting</a></li>
         	</ul>

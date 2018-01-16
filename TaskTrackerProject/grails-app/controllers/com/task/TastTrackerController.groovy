@@ -111,6 +111,7 @@ class TastTrackerController {
 		def org =OrganizationInfo.findByOrgId(session.organization.orgId)
 		def userId = params.userName
 		def password =params.password
+		def empId =params.empId
 		def isAdmin=false
 		def userFullName =params.userFullName
 		def userEmail =params.email

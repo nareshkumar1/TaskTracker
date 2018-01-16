@@ -6,18 +6,27 @@
 <title>Setup</title>
 </head>
 <body>
-<div style='backgroun-color:green;margin-left:50%;font-size:20px'>
+<h1 style='backgroun-color:green;margin-left:50%;font-size:20px'>
   <label>UPDATE PROFILE</label>
- </div>
+ </h1>
   <div style='margin-left:30%'>
   <table>
   	<tr>
-  	<td><label for='userName' class='appFont'>UserId</label></td>
+  	<td><label for='userName' class='appText'>UserId</label></td>
   	<td><input type='text' id='userName' name='userName' class='form-control' value='${session.user.userName}' readOnly ></td>
   	</tr>
     <tr  style='height:70px'>
-    <td><label for='fullName' class='appFont'>Username</label></td>
-    <td><input type='text' id='fullName' name='fullName' class='form-control' value='${session.user.userFullName}'></td>
+    <td><label for='fullName' class='appText'>User Full Name</label></td>
+    <td><input type='text' id='fullName' name='fullName' class='form-control' value='${session.user.userFullName}' placeholder="User full Name"></td>
+    </tr>
+    <tr>
+    <td><label for='email' class='appText'>Email</label></td>
+    <td><input type='email' id='email' name='email' class='form-control' value='${session.user.emailId}' placeholder="User Email"></td>
+    </tr>
+    </tr>
+    <tr style='height:70px'>
+    <td><label for='email' class='appText'>Employee Id</label></td>
+    <td><input type='email' id='email' name='email' class='form-control' value='${session.user.employeeId}' placeholder="Employee Id"></td>
     </tr>
     </table>
   </div>

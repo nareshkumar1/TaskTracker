@@ -6,6 +6,7 @@ class UserLoginInfo implements Serializable{
 	String userName
 	String password
 	String userFullName
+	String employeeId
 	String emailId
 	boolean isAdmin=false
 	boolean isActive=true

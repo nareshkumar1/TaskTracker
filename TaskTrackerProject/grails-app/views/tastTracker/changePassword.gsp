@@ -5,12 +5,13 @@
 <script>
 $(document).ready(function(){
 	$("#resetPass").click(function(){
-		if($("#password1").val()!=$("#password2").val()||$("#password1").val().length==0){	
+		if(($("#password1").val()!=$("#password2").val())||($("#password1").val().length==0&&$("#password2").val().length==0){	
 		openDialog("Password should be same in both field")	
 	}else{
 		doResetPassword();
 	}
 	});
+	
 });
 var showPassword =function(){
 	if($("#showPassword").prop('checked')==true){
@@ -22,6 +23,21 @@ var showPassword =function(){
 		$("#password2").attr('type','password')
 	}
 }
+var doResetPassword = function(){
+	$.post('${createLink(controller:"tastTracker",action:"doChangePassword")}',{"password":$("#password1").val()},function(data){
+			if(data=='success'){
+				openDialog("Click Ok to change password")
+				$("#ok").click(function(){
+					logout()
+				});
+			}
+		});
+}
+
+var logout = function(){
+	window.location.href ='${createLink(controller:"tastTracker",action:"logout")}'
+}
+
 </script>
 </head>
 <body>
@@ -29,7 +45,7 @@ var showPassword =function(){
   	<table style='margin-left:0;margin-top:50px'>
   	<tr>
   		<td>
-  		<label id="user" class='appFont' style="margin-left:75px;font-size:18px">${session.user.userName}</label>
+  		<label id="user" class='appText' style="margin-left:40px;font-size:18px">${session.user.userName}</label>
   		</td>
   	</tr>
   	<tr  style='height:60px;'>

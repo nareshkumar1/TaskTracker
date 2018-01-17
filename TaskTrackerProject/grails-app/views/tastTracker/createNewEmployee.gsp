@@ -24,9 +24,13 @@ var isValidate = function(){
 var addUser = function(){
 	if(isValidate()==true){
 		$.post('${createLink(controller:"tastTracker",action:"saveUser")}',$("#employeeForm").serialize(),function(data){
-			if(data=='success')
+			if(data=='success'){
 				openDialog('Employee added successfully')
 				window.location.href ='${createLink(contoller:"tastTracker",action:"logout")}'
+				}
+			else{
+				openDailog(data)
+					}
 		});
 	}else{
 		openDialog("Please fill all details")
@@ -47,7 +51,7 @@ var addUser = function(){
   		</td>
   		<tr style='height:70px'>
   		<td>
-  			<input type='text' name='userName' id='userName' class='form-control' placeholder="User name"/>
+  			<input type='email' name='email' id='email' class='form-control' placeholder="Email Address"/>
   		</td>
   		<tr>
   		<td>
@@ -55,21 +59,16 @@ var addUser = function(){
   		</td>
   		</tr>
   		<tr style='height:70px'>
-  		<td>
-  			<input type='email' name='email' id='email' class='form-control' placeholder="Email Address"/>
-  		</td>
-  		</tr>
-  		<tr>
   			<td>
   				<g:select id='depts' class="dropdown-toggle form-control" data-toggle="dropdown" name="deptName" noSelection="${['':'Select Department']}" from="${dept?.departmentName}" />
   			</td>
   		</tr>
-  		<tr style='height:70px'>
+  		<tr>
   			<td>
   				<g:select id='roles' class="dropdown-toggle form-control" data-toggle="dropdown" name="roleName" noSelection="${['':'Select Role']}" from="${role?.role}" />
   			</td>
   		</tr>
-  		<tr>
+  		<tr style='height:70px'>
   			<td>
   				<input type='button' id='saveButton' value='Submit' class='bigButton shadowBox btn btn-info btn-lg'>
   			</td>

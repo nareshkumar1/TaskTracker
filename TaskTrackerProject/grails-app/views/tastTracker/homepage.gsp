@@ -5,30 +5,6 @@
 <meta name="layout" content="main"/>
 <title>Home</title>
 <script>
-$(document).ready(function(){
-	$("#logout").click(function(){
-		logout();
-	});
-});
-
-var logout = function(){
-	window.location.href ='${createLink(controller:"tastTracker",action:"logout")}'
-}
-
-var resetPassword = function(){
-	$.post('${createLink(controller:"tastTracker",action:"changePassword")}',{},function(data){
-			$("#passwordReset").html(data);
-		});
-}
-
-var doResetPassword = function(){
-	$.post('${createLink(controller:"tastTracker",action:"doChangePassword")}',{"password":$("#password1").val()},function(data){
-			if(data=='success'){
-				openDialog("password has been changed please login")
-				logout();
-				}
-		});
-}
 
 </script>
 </head>

@@ -40,7 +40,7 @@
           <p id='inputData'></p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-info btn-sm" data-dismiss="modal">OK</button>
+          <button type="button" id="ok" class="btn btn-info btn-sm" data-dismiss="modal">OK</button>
         </div>
       </div>
     </div>

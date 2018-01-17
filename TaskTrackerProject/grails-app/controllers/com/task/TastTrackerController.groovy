@@ -109,7 +109,7 @@ class TastTrackerController {
 	 
 	def saveUser = {
 		def org =OrganizationInfo.findByOrgId(session.organization.orgId)
-		def userId = params.userName
+		def userId = params.email
 		def password =params.password
 		def empId =params.empId
 		def isAdmin=false
@@ -118,14 +118,20 @@ class TastTrackerController {
 		def deptName = params.deptName
 		def isActive =true
 		def role = params.roleName
-		if(params.deptName=='Admin')
-			isAdmin=true		
+		if(params.deptName=='Admin'){
+			isAdmin=true
+		}
+		if(UserLoginInfo.findByUserName(userId)){			
 		adminService.createNewUser(org,userId,userEmail,password,isAdmin,userFullName,isActive,deptName,role)
 		render 'success'
+		}
+		else{
+		render 'User is already registered please with new Email Id'	
+		}
 	 }
 	 
 	 def resetPassword = {
-		 def userName = UserLoginInfo.findByUserName(params.userName)
+		 def userName = UserLoginInfo.findByUserName(params.emailId)
 		 if(userName){
 			 render "success"
 		 }else{
@@ -138,7 +144,15 @@ class TastTrackerController {
 	 }
 	 
 	 def doEditUser = {
-		 def user = UserLoginInfo
+		 def user = UserLoginInfo.findByUserName(params.userName)
+		 user.userFullName=params.fullName
+		 user.emailId=params.email
+		 user.employeeId=params.empId
+		 session.user.userFullName=params.fullName
+		 session.user.emailId=params.email
+		 session.user.employeeId=params.empId
+		 user.save(flush:true,failOnError: true)
+		 render 'success'
 	 }
 	 
 	 def changePassword = {
@@ -147,11 +161,9 @@ class TastTrackerController {
 	 
 	 def doChangePassword ={
 		 def user = UserLoginInfo.findByUserName(session.user.userName)
-		 if(user){
-			 user.setPassword(params.password)
-			 user.save(flush:true)
+			 user.password = params.password.trim()
+			 user.save(flush:true,failOnError: true)
 			 render 'success'
-		 }
 	 }
 	 
 }

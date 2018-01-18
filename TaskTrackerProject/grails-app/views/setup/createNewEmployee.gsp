@@ -23,7 +23,7 @@ var isValidate = function(){
 
 var addUser = function(){
 	if(isValidate()==true){
-		$.post('${createLink(controller:"tastTracker",action:"saveUser")}',$("#employeeForm").serialize(),function(data){
+		$.post('${createLink(controller:"setup",action:"saveUser")}',$("#employeeForm").serialize(),function(data){
 			if(data=='success'){
 				openDialog('Employee added successfully')
 				window.location.href ='${createLink(contoller:"tastTracker",action:"logout")}'

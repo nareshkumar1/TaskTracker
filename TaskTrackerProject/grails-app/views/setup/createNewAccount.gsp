@@ -12,11 +12,11 @@ $(document).ready(function(){
 
 var submitOrgInfo = function(){
 	if(isEmail($('#email').val())){
-		$.post('${createLink(controller:'tastTracker',action:'addNewOrganization')}',$("#orgDataForm").serialize(),function(data){
+		$.post('${createLink(controller:'setup',action:'addNewOrganization')}',$("#orgDataForm").serialize(),function(data){
 			if(data=='failed'){
 				openDialog('Organization is already exists please try with another Name')
 			}else{
-				window.location.href='${createLink(controller:'tastTracker',action:'addDepartment')}'
+				window.location.href='${createLink(controller:'setup',action:'addDepartment')}'
 			}
 		});
 	}else{

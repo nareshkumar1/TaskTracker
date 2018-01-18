@@ -55,7 +55,7 @@ var validate = function(){
 
 var creatNewAccount = function(){
 	$('#loginDiv').fadeOut('slow')
-	window.location.href='${createLink(controller:"tastTracker",action:"createNewAccount")}'
+	window.location.href='${createLink(controller:"setup",action:"createNewAccount")}'
 }
 
 </script>

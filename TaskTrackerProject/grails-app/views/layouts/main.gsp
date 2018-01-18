@@ -56,7 +56,7 @@
       </button>
       <a class="navbar-brand uppercase appText">${session?.user.getOrganizationName()[0]}</a>
     </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
+    <div class="collapse navbar-collapse dropDownFont" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active "><a href='${createLink(controller:"tastTracker",action:"index")}' class='uppercase'>Home</a></li>
         <li class="dropdown">
@@ -72,16 +72,18 @@
            <li><a href="#">Setup</a></li>
         </g:if>
       </ul>
-      <ul class="nav navbar-nav navbar-right ">
+      <ul class="nav navbar-nav navbar-right dropDownFont">
         	<li class='dropdown' >
         	<a  class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> ${session.user.userFullName}</a>
         	<ul class="dropdown-menu">
         	<li><a href='${createLink(controller:"tastTracker",action:"editUser")}'>Update Profile</a></li>
             <li><a href='${createLink(controller:"tastTracker",action:"changePassword")}'>Change Password</a></li>
             <li><a href="#">Change Setting</a></li>
+            <li class="divider"></li>
+            <li><a class="dropDownFont" href='${createLink(controller:"tastTracker",action:"logout")}'><span class="glyphicon glyphicon-log-out"></span> Sign Out</a></li>
+            
         	</ul>
         	</li>
-        <li><a href='${createLink(controller:"tastTracker",action:"logout")}'><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
       </ul>
     </div>
   </div>

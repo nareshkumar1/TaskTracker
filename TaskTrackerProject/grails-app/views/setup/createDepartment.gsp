@@ -46,7 +46,7 @@ var addDepartment = function(){
 	if(emptyBlockes()>0){
 		openDialog("fields can't be left blank")
 		}else{
-		$.post('${createLink(controller:"tastTracker",action:"doAddDepartment")}',$("#depForm").serialize(),function(data){
+		$.post('${createLink(controller:"setup",action:"doAddDepartment")}',$("#depForm").serialize(),function(data){
 			if(data=='success'){
 				openDialog("success")
 				addRole()
@@ -61,10 +61,10 @@ var addRole =function(){
 	if(emptyBlockes()>0){
 			openDialog("Fields can't be left blank")
 		}else{
-			$.post('${createLink(controller:"tastTracker",action:"addRole")}',$("#roleForm").serialize(),function(data){
+			$.post('${createLink(controller:"setup",action:"addRole")}',$("#roleForm").serialize(),function(data){
 					if(data=='success'){
 						openDialog("successFull")
-						window.location.href='${createLink(controller:"tastTracker",action:"createNewEmployee")}'
+						window.location.href='${createLink(controller:"setup",action:"createNewEmployee")}'
 					}else{
 						openDialog(data)
 					}

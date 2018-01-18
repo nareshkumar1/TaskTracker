@@ -21,11 +21,11 @@ class TastTrackerController {
 			return
 		}
 	
-	 def index = {
+	def index = {
 		render (view:'/tastTracker/homepage')
 		}
 	
-	 def login = {
+	def login = {
 			def user = UserLoginInfo.findByUserName(params.userName)
 			if(user){
 				if(user.password==params.password){
@@ -38,99 +38,15 @@ class TastTrackerController {
 			}
 		}
 	}
-
-	 def createNewAccount = {
-		render (view:'/tastTracker/createNewAccount')
-	}
 	 
-	def addNewOrganization = {
-		def orgId = Utilities.generateOrganizationId()
-		def orgName = OrganizationInfo.findByOrgName(params.orgName)
-		if(orgName){
-			render 'failed'
-		}else{
-			adminService.addOrganization(orgId,params.orgName,params.email,params.empCount.toInteger(),params.phone)
-			session['organization']=OrganizationInfo.findByOrgId(orgId)
-			render 'success'
-		}
-	}
-	
-	 def addDepartment ={
-		 render(view:'/tastTracker/createDepartment')
-	}
-	
-	 def doAddDepartment = {
-		 def department = params.depName.class.isArray()?params.depName:[params.depName]
-		 department.each{deptName->
-			def dept =LocationDepartment.findByDepartmentNameAndOrganization(deptName,session.organization)
-				println 'session orgId '+session.organization.orgId	
-			if(!dept){
-				dept =new LocationDepartment('organization':session.organization,'departmentName':deptName).save(flush:true)
-				dept.save(flush:true)
-				render 'success'
-			}else{
-				dept.departmentName=deptName
-				dept.organization=session.organization
-				dept.save(flush:true)
-				render 'success'
-			}
-		}
-	 }
-	 
-	 def addRole = {
-		 def roles =params.roleName.class.isArray()?params.roleName:[params.roleName]
-		 roles.each{role->
-			 def orgRole = Role.findByOrganizationAndRole(session.organization,role)
-			 if(orgRole){
-				 orgRole.role=role
-				 orgRole.organization=session.organization
-				 orgRole.save(flush:true)
-			 }else{
-			 	orgRole = new Role(['role':role,'organization':session.organization])
-				orgRole.save(flush:true)
-				 render 'success'
-			 } 
-		 }
-	 }
-	 
-	 def logout = {
+	def logout = {
 		 if(session)
 		 session.invalidate()
 		 
 		 redirect (url:grailsApplication.config.logout.url)
 	 }
 	 
-	 def createNewEmployee = {
-		 def dept = LocationDepartment.findAllByOrganization(session.organization)
-		 def roles = Role.findAllByOrganization(session.organization)
-		render (view:'/tastTracker/createNewEmployee',model:['dept':dept,'role':roles])
-	
-	 }
-	 
-	def saveUser = {
-		def org =OrganizationInfo.findByOrgId(session.organization.orgId)
-		def userId = params.email
-		def password =params.password
-		def empId =params.empId
-		def isAdmin=false
-		def userFullName =params.userFullName
-		def userEmail =params.email
-		def deptName = params.deptName
-		def isActive =true
-		def role = params.roleName
-		if(params.deptName=='Admin'){
-			isAdmin=true
-		}
-		if(UserLoginInfo.findByUserName(userId)){			
-		adminService.createNewUser(org,userId,userEmail,password,isAdmin,userFullName,isActive,deptName,role)
-		render 'success'
-		}
-		else{
-		render 'User is already registered please with new Email Id'	
-		}
-	 }
-	 
-	 def resetPassword = {
+	def resetPassword = {
 		 def userName = UserLoginInfo.findByUserName(params.emailId)
 		 if(userName){
 			 render "success"
@@ -139,11 +55,11 @@ class TastTrackerController {
 		 }
 	 }
 	 
-	 def editUser = {
+	def editUser = {
 		 render (view:'/tastTracker/editUser')
 	 }
 	 
-	 def doEditUser = {
+	def doEditUser = {
 		 def user = UserLoginInfo.findByUserName(params.userName)
 		 user.userFullName=params.fullName
 		 user.emailId=params.email
@@ -155,11 +71,11 @@ class TastTrackerController {
 		 render 'success'
 	 }
 	 
-	 def changePassword = {
+	def changePassword = {
 		 render (view:"/tastTracker/changePassword")
 	 }
 	 
-	 def doChangePassword ={
+	def doChangePassword ={
 		 def user = UserLoginInfo.findByUserName(session.user.userName)
 			 user.password = params.password.trim()
 			 user.save(flush:true,failOnError: true)

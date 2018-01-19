@@ -34,7 +34,7 @@
     
       <!-- Modal content-->
       <div class="modal-content">
-        <div class="modal-header" style="background-color:dimmWhite">
+        <div class="modal-header" style="background-color:green">
         </div>
         <div class="modal-body">
           <p id='inputData'></p>
@@ -60,16 +60,19 @@
       <ul class="nav navbar-nav">
         <li class="active "><a href='${createLink(controller:"tastTracker",action:"index")}' class='uppercase'>Home</a></li>
         <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Page 1-1</a></li>
-            <li><a href="#">Page 1-2</a></li>
-            <li><a href="#">Page 1-3</a></li>
-          </ul>
+          <a href="#">Page 1 </a>
+          
         </li>
         <li><a href="#">Page 2</a></li>
         <g:if test='${session.user.isAdmin}'>
-           <li><a href="#">Setup</a></li>
+           <li><a class="dropdown-toggle" data-toggle="dropdown">Setup <span class="caret"></span></a>
+           		<ul class="dropdown-menu">
+            	<li><a href="#">Manage users</a></li>
+            	<li><a href="#">Edit Organization</a></li>
+            	<li><a href="#">Other settings</a></li>
+          </ul>
+           
+           </li>
         </g:if>
       </ul>
       <ul class="nav navbar-nav navbar-right dropDownFont">

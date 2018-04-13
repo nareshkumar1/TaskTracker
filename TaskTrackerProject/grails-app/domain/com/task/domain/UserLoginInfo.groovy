@@ -12,15 +12,22 @@ class UserLoginInfo implements Serializable{
 	boolean isActive=true
 		
 	static hasMany = [userLogins:UserLoginInfoLocation]
+	
+	
 
 	static constraints = {
+		employeeId nulable:true
+	}
+	
+	static mapping = {
+		
 	}
 	
 	def getOrganizationName = {
 		return userLogins.collect(){it?.orgInfo.orgName}
 	}
 	
-	def getOrganizationId = {
-		return userLogins.collect(){it?.orgInfo.orgId}
+	def getOrganizations = {
+		return userLogins.collect(){it?.orgInfo}
 	}
 }

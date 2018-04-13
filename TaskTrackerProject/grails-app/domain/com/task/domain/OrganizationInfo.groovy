@@ -19,7 +19,7 @@ class OrganizationInfo implements Serializable{
 	}
 		
     static constraints = {
-		orgName unique:true
-		orgId unique:true
+		//orgName unique:true
+		//orgId unique:true
     }
 }

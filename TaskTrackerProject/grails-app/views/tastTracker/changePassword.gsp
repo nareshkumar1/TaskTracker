@@ -1,11 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-<html>
 <head>
-<meta name="layout" content="main"/>
 <script>
 $(document).ready(function(){
 	$("#resetPass").click(function(){
-		if(($("#password1").val()!=$("#password2").val())||($("#password1").val().length==0&&$("#password2").val().length==0){	
+		if(($("#password1").val()!=$("#password2").val())||($("#password1").val().length==0&&$("#password2").val().length==0)){	
 		openDialog("Password should be same in both field")	
 	}else{
 		doResetPassword();
@@ -74,4 +72,3 @@ var logout = function(){
   	</table>
   </div>
 </body>
-</html>

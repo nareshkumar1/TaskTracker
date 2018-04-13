@@ -7,10 +7,11 @@ import com.taskTracker.utils.Utilities
 import com.task.domain.UserLoginInfo
 
 
-class SetupController {
+class SetupController{
 	
-	def adminService
+	def setupService
 	def grailsApplication
+	
 	
 	 def createNewAccount = {
 		render (view:'/setup/createNewAccount')
@@ -22,7 +23,7 @@ class SetupController {
 		if(orgName){
 			render 'failed'
 		}else{
-			adminService.addOrganization(orgId,params.orgName,params.email,params.empCount.toInteger(),params.phone)
+			setupService.addOrganization(orgId,params.orgName,params.email,params.empCount.toInteger(),params.phone)
 			session['organization']=OrganizationInfo.findByOrgId(orgId)
 			render 'success'
 		}
@@ -36,7 +37,6 @@ class SetupController {
 		 def department = params.depName.class.isArray()?params.depName:[params.depName]
 		 department.each{deptName->
 			def dept =LocationDepartment.findByDepartmentNameAndOrganization(deptName,session.organization)
-				println 'session orgId '+session.organization.orgId
 			if(!dept){
 				dept =new LocationDepartment('organization':session.organization,'departmentName':deptName).save(flush:true)
 				dept.save(flush:true)
@@ -60,7 +60,7 @@ class SetupController {
 				 orgRole.save(flush:true)
 			 }else{
 				 orgRole = new Role(['role':role,'organization':session.organization])
-				orgRole.save(flush:true)
+				 orgRole.save(flush:true)
 				 render 'success'
 			 }
 		 }
@@ -87,12 +87,12 @@ class SetupController {
 		if(params.deptName=='Admin'){
 			isAdmin=true
 		}
-		if(UserLoginInfo.findByUserName(userId)){
-		adminService.createNewUser(org,userId,userEmail,password,isAdmin,userFullName,isActive,deptName,role)
+		if(!UserLoginInfo.findByUserName(userId)){
+		setupService.createNewUser(org,userId,userEmail,password,isAdmin,userFullName,isActive,deptName,role)
 		render 'success'
 		}
 		else{
-		render 'User is already registered please with new Email Id'
+		render 'User is already registered please try with new Email Id'
 		}
 	 }
 

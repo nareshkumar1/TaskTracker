@@ -7,43 +7,55 @@ import com.taskTracker.utils.Utilities
 import com.task.domain.Role
 
 
-class TastTrackerController {
+class TastTrackerController   {
 
 	def adminService
 	def grailsApplication
-   
+	
 	static beforeInterceptor = {
-			def requestAction = actionName
-			def ignoreMethods = ['login','createNewAccount','resetPassword','addDepartment','doAddDepartment','addRole','createNewEmployee']
-			if(!ignoreMethods.contains(requestAction)&&session['user']==null&&session['organization']==null){
-				redirect (url:grailsApplication.config.logout.url)
-			}
-			return
+		def requestAction = actionName
+		def ignoreMethods = ['login','createNewAccount','resetPassword','addDepartment','doAddDepartment','addRole','createNewEmployee']
+		if(!ignoreMethods.contains(requestAction)&&session['user']==null&&session['organization']==null){
+			redirect (url:grailsApplication.config.logout.url)
 		}
+		return
+	}
 	
 	def index = {
-		render (view:'/tastTracker/homepage')
+		if(session.user){
+			session['user'].refresh()
+				session.user.getOrganizations().each{org->
+					session['organization'] =org
+				}				
+			render (view:'/tastTracker/homepage')
 		}
+	}
 	
 	def login = {
 			def user = UserLoginInfo.findByUserName(params.userName)
 			if(user){
 				if(user.password==params.password){
-					session['user']=user
-					println session['user'].getOrganizationName()[0]
-					redirect(action:'index')
-				}else{
+					if(user.isActive==true){
+						session['user']=user
+						redirect(action:'index')
+						}else{
+						render 'disabled'
+						}
+					}else{
 				 	render 'failed'
-				
 			}
+					log.info(user)
+				
 		}
 	}
 	 
 	def logout = {
-		 if(session)
-		 session.invalidate()
-		 
-		 redirect (url:grailsApplication.config.logout.url)
+		 if(session.user){
+			 session.invalidate()
+			 redirect (url:grailsApplication.config.logout.url)
+		 }else{
+		 render(view:"index")
+		 }		 
 	 }
 	 
 	def resetPassword = {
@@ -81,5 +93,6 @@ class TastTrackerController {
 			 user.save(flush:true,failOnError: true)
 			 render 'success'
 	 }
+	
 	 
 }

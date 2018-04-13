@@ -44,8 +44,13 @@ var validate = function(){
 			if(data!='failed'){
 				window.location.href='${createLink(controller:"tastTracker",action:"index")}'
 			}
+			else if(data=='disabled'){
+				alert(data)
+				openDialog("User is Disabled please contact Administrator")
+			}
 			else{
-				openDialog("username/password does not match")
+				alert(data)
+				openDialog("Check userName/password")
 			}
 		});
 	}else{

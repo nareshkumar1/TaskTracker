@@ -1,9 +1,10 @@
 dataSource {
     pooled = true
     jmxExport = true
-    driverClassName = "org.h2.Driver"
-    username = "sa"
-    password = ""
+    driverClassName = "com.mysql.jdbc.Driver"
+    username = "root"
+    password = "password"
+	dialect = "org.hibernate.dialect.MySQL5InnoDBDialect"
 }
 hibernate {
     cache.use_second_level_cache = true
@@ -19,9 +20,9 @@ environments {
     development {
         dataSource {
             dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
-            url = "jdbc:h2:sample;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
-			username = "sa"
-			password = ""
+            url = "jdbc:mysql://localhost:3306/tasktracker"
+			username = "root"
+			password = "password"
 			properties {
 				maxActive = -1
 				minEvictableIdleTimeMillis=1800000

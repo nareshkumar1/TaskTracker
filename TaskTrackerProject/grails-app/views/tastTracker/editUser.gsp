@@ -2,8 +2,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
-<meta name="layout" content="main"/>
-<title>Setup</title>
 <script>
 var saveDetails = function(){
 	$.post('${createLink(contoller:"tastTracket",action:"doEditUser")}',$("#dataForm").serialize(),function(data){

@@ -91,8 +91,8 @@ $(document).ready(function(){
 			<input style="text-align: center;margin-left:40%;margin-top:5%" id="orgSaveButton" type="button" value="Save"  class='okButton shadowBox btn btn-info btn-sm'>
 	</form>
 	</div>
-   <div id="orgLeave" style="display:inline-block;margin-left:10%;height:300px;width:20%">
-   		<table id="leaveDataTable" class="table table-condensed table-hover table-bordered"  >
+   <div id="orgLeave" style="display:inline-block;margin-left:10%;height:300px;width:25%">
+   		<table id="leaveDataTable" class="table table-condensed table-hover table-bordered" style="vertical-align: top" >
 			<thead>
 				<tr>
 					<th hidden=true>leaveId</th>

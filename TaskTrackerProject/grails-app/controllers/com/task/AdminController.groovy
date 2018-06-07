@@ -80,7 +80,6 @@ class AdminController extends AuthenticationController {
 	
 	def getOrganizationData = {
 		def leaves = adminService.getOrgLeaves(session.organization)
-		println leaves
 		render (view:"/admin/organizationSetup",model:[leaves:leaves])
 	}
 	

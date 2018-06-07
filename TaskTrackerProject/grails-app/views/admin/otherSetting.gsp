@@ -17,6 +17,14 @@ $(document).ready(function(){
 		order:[[1,"asc"]]
 		});	
 
+	$("#mapTable").dataTable({
+		paging:false,
+		scrollY:400,
+		searching:false,
+		bInfo:false,
+		order:[[1,"asc"]]
+		});	
+
 	$("#deptTable tbody tr").on('click',function(event) {
     	$("#deptTable tbody tr").css({'background-color':'white'});
 		$("#deptTable tbody tr").css({'color':'black'});
@@ -31,6 +39,14 @@ $(document).ready(function(){
 		$(this).css({'background-color':'#8E96F1'});
 		$(this).css({'color':'white'});
 		editRole(this);
+	});
+
+	$("#mapTable tbody tr").on('click',function(event) {
+    	$("#mapTable tbody tr").css({'background-color':'white'});
+		$("#mapTable tbody tr").css({'color':'black'});
+		$(this).css({'background-color':'#8E96F1'});
+		$(this).css({'color':'white'});
+		//editDept(this);
 	});
 
 		$("#addDept").click(function(){
@@ -111,7 +127,7 @@ var editRole = function(tr){
   	</table>
   	</form>
   	</div>
-  <div id="roleDiv" style=";display:inline-block;margin-top:20px;margin-left:10%">
+  <div id="roleDiv" style=";display:inline-block;margin-top:20px;margin-left:5%">
   	<table id="roleTable" class="table table-condensed table-hover table-bordered" style="width:200px">
   		<thead>
   			<tr>
@@ -151,5 +167,25 @@ var editRole = function(tr){
   	</table>
   	</form>
   	</div>
+  	<div id="mapDiv" style=";display:inline-block;margin-top:20px;margin-left:5%;vertical-align: top">
+  	<table id="mapTable" class="table table-condensed table-hover table-bordered" style="width:200px">
+  		<thead>
+  			<tr>
+  				<th hidden=true>id</th>
+  				<th>Department</th>
+  				<th>Roles Assigned</th>
+  			</tr>
+  		</thead>
+  		<tbody>
+  			<g:each in="${orgRole}" var="role">
+  			<tr>
+  			<td hidden=true>${role.roleId}</td>
+  			<td>${role.role}</td>
+  			<td>0</td>
+  			</tr>
+  		</g:each>
+  		</tbody>  	
+  	</table>
+  </div>
 </body>
 </html>

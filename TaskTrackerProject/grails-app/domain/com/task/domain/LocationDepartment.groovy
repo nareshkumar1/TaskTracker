@@ -8,6 +8,7 @@ class LocationDepartment implements Serializable {
 	long departmentId
 	String departmentName
 	
+	static hasMany = [departmentRole:Role]
 	static constraint = {
 		
 	}

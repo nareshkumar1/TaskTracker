@@ -97,12 +97,14 @@ var openOtherSetting = function(){
   <li><a  href="#manageUserResult" >Manage Users</a></li>
   <li><a href="#editOrganizationResult">Organization Settings</a></li>
   <li><a href="#otherSettingResult">Other Settings</a></li>
+  <li><a href="#userPermissionResult">User Privileges</a></li>
 </ul>
     <div  id="manageUserResult" ></div>
     <div id="editOrganizationResult" style="margin-left:10%;height:100%;display: inline-block;margin-top:20px;display:none;"></div>
 	<div id="otherSettingResult" style="height:100%">
 	<div id="departmentSetting"></div>
 	</div>
+	<div  id="userPermissionResult" ></div>
 </div>
 </body>
 </html>

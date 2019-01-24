@@ -21,25 +21,25 @@
 		
    });
 
-    var clear = function(){
-    	clearData();
-      }
+	var clear = function() {
+		clearData();
+	}
 
-    
-   var isValidate = function() {
-   		var valid = true;
-   		$('#newUserForm input').each(function() {
-   		if (this.value == "")
-    			valid = false
-       		})
-       		return valid
-       	}
-      	
-    var fieldValidation = function(element){
-    	var text = $(element).val()
-    	if($(element).val().length==0)
-    		alert(text)
-        }
+
+	var isValidate = function() {
+		var valid = true;
+		$('#newUserForm input').each(function() {
+			if (this.value == "")
+				valid = false
+		})
+		return valid
+	}
+
+	var fieldValidation = function(element) {
+		var text = $(element).val()
+		if ($(element).val().length == 0)
+			alert(text)
+	}
 
 	var openUser = function(tr){
 		
@@ -84,13 +84,11 @@
     		}
     	}
 
-    
-    
 </script>
 <style>
 .row_selected {
-	background-color:#8E96F1;
-	color:white;
+	background-color: #8E96F1;
+	color: white;
 }
 </style>
 </head>

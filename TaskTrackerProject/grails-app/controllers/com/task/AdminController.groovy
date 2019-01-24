@@ -99,9 +99,11 @@ class AdminController extends AuthenticationController {
 	}
 	
 	def getAllDepartments = {
-		def orgDept = adminService.getAllDepartment(session.organization)
-		def orgRole = adminService.getAllRoles(session.organization)
-		render (view:"/admin/otherSetting",model:[orgDept:orgDept,orgRole:orgRole])
+		def organization = session.organzation
+		def orgDept = adminService.getAllDepartment(organization)
+		def orgRole = adminService.getAllRoles(organization)
+		return orgDept
+		//render (view:"/admin/otherSetting",model:[orgDept:orgDept,orgRole:orgRole])
 		
 		
 	}

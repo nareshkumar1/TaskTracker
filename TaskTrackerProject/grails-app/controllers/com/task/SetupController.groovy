@@ -88,7 +88,7 @@ class SetupController{
 			isAdmin=true
 		}
 		if(!UserLoginInfo.findByUserName(userId)){
-		setupService.createNewUser(org,userId,userEmail,password,isAdmin,userFullName,isActive,deptName,role)
+		setupService.createNewUser(org,userId,userEmail,password,isAdmin,userFullName,isActive,deptName,role,empId)
 		render 'success'
 		}
 		else{
